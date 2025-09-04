@@ -1,95 +1,107 @@
 #include <stdio.h>
 
+// Funções Recursivas
+
+// --- Movimento da Torre (Recursão)
+
+void movimentoTorre(int casasRestantes){
+    if (casasRestantes > 0){
+
+        printf("Direita\n");
+        movimentoTorre(casasRestantes - 1);
+    }
+}
+
+// --- Movimento do Bispo (Recursão)
+
+void movimentoBispo(int casasRestantes){
+    if (casasRestantes <= 0){
+
+        for(int i = 0; i < 1; i++){
+
+            for(int j = 0; j < 1; j++){
+                printf("Baixo, Esquerda\n");
+            }
+        }
+
+        printf("Cima, Direita\n");
+        movimentoBispo(casasRestantes - 1);
+    }
+}
+
+// --- Movimento da Rainha (Recursão)
+
+void movimentoRainha(int casasRestantes){
+    if (casasRestantes > 0){
+
+        printf("Esquerda\n");
+        movimentoRainha(casasRestantes - 1);
+    }
+}
 
 int main() {
 
-    // --- Movimento da Torre (FOR)
+    // --- Movimento da Torre (Recursão)
 
     // Define o número de casas que a Torre se moverá.
     int casasParaMoverTorre = 5;
 
     printf("--- Movimento da Torre ---\n");
-    
-    // O  'for' executará 5 vezes.
-    for (int i = 0; i < casasParaMoverTorre; i++) {
+    const int casasRestantes = casasParaMoverTorre;
 
-        // Imprime a direção do movimento a cada passo.
-        printf("Direita\n");
-    }
+    movimentoTorre(casasRestantes);
 
-
-    // --- Movimento do Bispo (WHILE)
+    // --- Movimento do Bispo (Recursão)
 
     // Define o número de casas que o Bispo se moverá.
     int casasParaMoverBispo = 5;
-    int contadorBispo = 0; // Variável de controle para o laço 'while'.
+    
 
     printf("\n--- Movimento do Bispo ---\n");
 
-    while (contadorBispo < casasParaMoverBispo) {
+    const int casasRestantesBispo = casasParaMoverBispo;
 
-        // Imprime a combinação de direções do movimento diagonal.
-        printf("Cima, Direita\n");
-        
-        // Incrementa o contador para evitar um laço infinito e controlar a repetição.
-        contadorBispo++;
-    }
+    movimentoBispo(casasRestantesBispo);
 
 
-    // --- Movimento da Rainha (DO-WHILE)
+    // --- Movimento da Rainha (Recursão)
 
     // Define o número de casas que a Rainha se moverá.
     int casasParaMoverRainha = 8;
-    int contadorRainha = 0; // Variável de controle para o laço 'do-while'.
 
     printf("\n--- Movimento da Rainha ---\n");
 
-    do {
-        // Imprime a direção do movimento a cada passo.
-        printf("Esquerda\n");
-        
-        // Incrementa o contador para controlar o número de repetições.
-        contadorRainha++;
-    } while (contadorRainha < casasParaMoverRainha);
+    const int casasRestantesRainha = casasParaMoverRainha;
 
-    // --Movimento do Cavalo (For e While)
+    movimentoRainha(casasRestantesRainha);
 
-    const int casasParaBaixo = 2;
-    const int casasParaEsquerda = 1;
+    // --Movimento do Cavalo (Loops aninhados)
+
+    const int casasParaCima = 2;
+    const int casasParaDireita = 1;
+    const int movimentoTotal = casasParaCima + casasParaDireita;
 
     printf("\n--- Movimento do Cavalo ---\n");
 
-    for (int faseMovimento = 0; faseMovimento < 2; faseMovimento++){
+    for (int movimentoAtual = 1; movimentoAtual <= movimentoTotal; movimentoAtual++){
 
-        //Primeira fase do movimento.
+        // Este loop sempre executa uma vez e é interrompido pelo Break.
+         
+        while(1){
 
-        if(faseMovimento == 0){
+            if (movimentoAtual <= casasParaCima){
+                //Movimento para cima.
+                printf("Cima\n");
 
-            int contadorBaixo = 0;
+            } else {
+                    //Movimento para a direita.
+                    printf("Direita\n"); 
 
-            //Movimento para Baixo.
-            while (contadorBaixo < casasParaBaixo){
+                }
 
-                //Imprime a direção do movimento.
-                printf("Baixo\n");
-                contadorBaixo++;
-            }
-        }
-
-        //Segunda fase do movimento.
-        
-        else {
-
-            int contadorEsquerda = 0;
-
-            //Movimento para esquerda.
-            while (contadorEsquerda < casasParaEsquerda) {
-
-                //Imprime a direção do movimento.
-                printf("Esquerda\n");
-                contadorEsquerda++;
-            }
-        }
+            // Interrompe o loop infinito.
+            break;
+         }  
     }
 
     return 0;
