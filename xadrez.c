@@ -1,10 +1,8 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
 int main() {
+
     // --- Movimento da Torre (FOR)
 
     // Define o número de casas que a Torre se moverá.
@@ -53,6 +51,46 @@ int main() {
         // Incrementa o contador para controlar o número de repetições.
         contadorRainha++;
     } while (contadorRainha < casasParaMoverRainha);
+
+    // --Movimento do Cavalo (For e While)
+
+    const int casasParaBaixo = 2;
+    const int casasParaEsquerda = 1;
+
+    printf("\n--- Movimento do Cavalo ---\n");
+
+    for (int faseMovimento = 0; faseMovimento < 2; faseMovimento++){
+
+        //Primeira fase do movimento.
+
+        if(faseMovimento == 0){
+
+            int contadorBaixo = 0;
+
+            //Movimento para Baixo.
+            while (contadorBaixo < casasParaBaixo){
+
+                //Imprime a direção do movimento.
+                printf("Baixo\n");
+                contadorBaixo++;
+            }
+        }
+
+        //Segunda fase do movimento.
+        
+        else {
+
+            int contadorEsquerda = 0;
+
+            //Movimento para esquerda.
+            while (contadorEsquerda < casasParaEsquerda) {
+
+                //Imprime a direção do movimento.
+                printf("Esquerda\n");
+                contadorEsquerda++;
+            }
+        }
+    }
 
     return 0;
 }
